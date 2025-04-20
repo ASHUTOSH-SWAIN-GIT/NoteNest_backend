@@ -6,9 +6,9 @@ interface NoteData {
   subject: string;
   price: number;
   description: string;
-  
-  
 }
+
+
 
 // Fetch all notes (no pagination)
 export const getAllNotes = () => {
@@ -39,4 +39,5 @@ export const deleteNote = async (id: string) => {
         where: { id },
     });
 };
+
 

@@ -2,6 +2,7 @@ require(`dotenv`).config();
 import express from "express"
 import { errorHandler } from "./middleware/errorHandler";
 import NotesRouter from './routes/notesRoute';
+import authRoute from "./routes/authRoute"
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -19,5 +20,6 @@ app.use(express.json()); // ⬅️ Add this
 
 // use routes
 app.use(`/api/notes`,NotesRouter)
+app.use(`/api/auth`,authRoute)
 
 app.use(errorHandler)
