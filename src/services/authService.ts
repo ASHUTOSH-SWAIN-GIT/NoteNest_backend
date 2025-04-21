@@ -1,5 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 import bcrypt from "bcryptjs"
+
 const prisma = new PrismaClient();
 
 
@@ -22,6 +23,6 @@ export const signup = async (data: Userdata) => {
     })
 }
 
-export const login = () => {
-    
+export const login = async(data:Userdata) => {
+
 }

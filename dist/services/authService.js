@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.signup = void 0;
+exports.login = exports.signup = void 0;
 const client_1 = require("@prisma/client");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const prisma = new client_1.PrismaClient();
@@ -27,3 +27,6 @@ const signup = (data) => __awaiter(void 0, void 0, void 0, function* () {
     });
 });
 exports.signup = signup;
+const login = (data) => __awaiter(void 0, void 0, void 0, function* () {
+});
+exports.login = login;

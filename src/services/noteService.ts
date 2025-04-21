@@ -1,4 +1,8 @@
 import { PrismaClient } from '@prisma/client';
+
+
+
+
 const prisma = new PrismaClient();
 
 interface NoteData {
@@ -39,5 +43,6 @@ export const deleteNote = async (id: string) => {
         where: { id },
     });
 };
+
 
 
