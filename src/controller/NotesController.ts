@@ -66,7 +66,7 @@ export const DownloadNote = async (req: Request, res: Response) => {
         const download = await prisma.downloads.create({
             data: {
               Note: {
-                connect: { id: noteId }
+                connect: { Noteid: noteId }
               },
               User: {
                 connect: { Userid: userId }

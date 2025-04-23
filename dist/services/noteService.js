@@ -36,9 +36,9 @@ const createNote = (data) => {
     });
 };
 exports.createNote = createNote;
-const deleteNote = (id) => __awaiter(void 0, void 0, void 0, function* () {
+const deleteNote = (noteId) => __awaiter(void 0, void 0, void 0, function* () {
     return prisma.note.delete({
-        where: { id },
+        where: { Noteid: noteId },
     });
 });
 exports.deleteNote = deleteNote;

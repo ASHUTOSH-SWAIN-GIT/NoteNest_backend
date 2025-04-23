@@ -106,7 +106,7 @@ const DownloadNote = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const download = yield prisma.downloads.create({
             data: {
                 Note: {
-                    connect: { id: noteId }
+                    connect: { Noteid: noteId }
                 },
                 User: {
                     connect: { Userid: userId }

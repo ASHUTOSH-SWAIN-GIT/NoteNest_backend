@@ -38,9 +38,9 @@ export const createNote = (data: NoteData) => {
   });
 };
 
-export const deleteNote = async (id: string) => {
+export const deleteNote = async (noteId: string) => {
     return prisma.note.delete({
-        where: { id },
+        where: { Noteid:noteId },
     });
 };
 
