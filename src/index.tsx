@@ -6,7 +6,6 @@ import authRoute from "./routes/authRoute"
 import imageRoute from "./routes/imageRoute"
 
 
-
 const cloudinary = require('cloudinary').v2;
 
 
@@ -16,6 +15,9 @@ cloudinary.config({
     api_secret: process.env.CLOUD_API_SECRET,
     secure: true,
 });
+
+
+
 
 const app = express();
 const port = process.env.PORT || 3000;
