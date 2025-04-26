@@ -12,12 +12,12 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: ['https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app/',` http://localhost:3000`], // Replace with your frontend URL
+    origin: ['https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app/', ` http://localhost:3000`], // Replace with your frontend URL
     methods: ['GET', 'POST'],         // Specify allowed HTTP methods
     allowedHeaders: ['Content-Type'], // Specify allowed headers
-  };
+};
 
-  app.use(cors(corsOptions))
+
 
 
 cloudinary.config({
@@ -31,7 +31,7 @@ cloudinary.config({
 
 
 
-
+app.use(cors(corsOptions))
 app.get('/', (req: any, res: any) => {
     res.send('Hello World!')
 })
