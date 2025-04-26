@@ -7,7 +7,7 @@ require(`dotenv`).config();
 const express_1 = __importDefault(require("express"));
 const errorHandler_1 = require("./middleware/errorHandler");
 const notesRoute_1 = __importDefault(require("./routes/notesRoute"));
-const authRoute_1 = __importDefault(require("./routes/authRoute"));
+// import authRoute from "./routes/authRoute"
 const imageRoute_1 = __importDefault(require("./routes/imageRoute"));
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
@@ -27,6 +27,6 @@ app.listen(port, () => {
 app.use(express_1.default.json());
 // use routes
 app.use(`/api/notes`, notesRoute_1.default);
-app.use(`/api/auth`, authRoute_1.default);
+// app.use(`/api/auth`, authRoute)
 app.use(`/api/image`, imageRoute_1.default);
 app.use(errorHandler_1.errorHandler);
