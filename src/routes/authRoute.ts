@@ -1,14 +1,14 @@
-// routes/notesRoute.ts
-import { Router } from 'express';
-// import { googleLogin } from "../controller/authController"
+// // routes/notesRoute.ts
+// import { Router } from 'express';
+// // import { googleLogin } from "../controller/authController"
 
 
-const router = Router();
+// const router = Router();
 
-// Define your routes
-// router.post('/signup',googleLogin );
-router.get(`/login`,)
+// // Define your routes
+// // router.post('/signup',googleLogin );
+// // router.get(`/login`,)
 
 
-// This is important
-export default router;
+// // This is important
+// export default router;
