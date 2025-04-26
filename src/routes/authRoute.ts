@@ -1,12 +1,12 @@
 // routes/notesRoute.ts
 import { Router } from 'express';
-import { SignUp } from "../controller/authController"
+// import { googleLogin } from "../controller/authController"
 
 
 const router = Router();
 
 // Define your routes
-router.post('/signup',SignUp );
+// router.post('/signup',googleLogin );
 router.get(`/login`,)
 
 
