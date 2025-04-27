@@ -1,24 +1,19 @@
-require(`dotenv`).config();
-import express from "express"
+require('dotenv').config();
+import express from "express";
 import { errorHandler } from "./middleware/errorHandler";
 import NotesRouter from './routes/notesRoute';
-// import authRoute from "./routes/authRoute"
-import imageRoute from "./routes/imageRoute"
-
+import imageRoute from "./routes/imageRoute";
 
 const cloudinary = require('cloudinary').v2;
-const cors = require(`cors`)
+const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
 const corsOptions = {
-    origin: ['https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app/','http://localhost:3000'], // Replace with your frontend URL
-    methods: ['GET', 'POST'],         // Specify allowed HTTP methods
-    allowedHeaders: ['Content-Type'], // Specify allowed headers
+    origin: ['https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app', 'http://localhost:3000'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // allow more methods
+    allowedHeaders: ['Content-Type', 'Authorization'],
 };
-
-
-
 
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
@@ -27,25 +22,23 @@ cloudinary.config({
     secure: true,
 });
 
+// Setup middlewares
+app.use(cors(corsOptions));
+app.use(express.json());
 
-
-
-
-app.use(cors(corsOptions))
+// Simple route
 app.get('/', (req: any, res: any) => {
-    res.send('Hello World!')
-})
+    res.send('Hello World!');
+});
+
+// Use routes
+app.use('/api/notes', NotesRouter);
+app.use('/api/image', imageRoute);
+
+// Error handler
+app.use(errorHandler);
+
+// Now listen AFTER setting up everything
 app.listen(port, () => {
     console.log(`Server running on http://localhost:${port}`);
 });
-
-app.use(express.json());
-
-
-
-// use routes
-app.use(`/api/notes`, NotesRouter)
-// app.use(`/api/auth`, authRoute)
-app.use(`/api/image`, imageRoute)
-
-app.use(errorHandler)
