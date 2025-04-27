@@ -12,7 +12,7 @@ const port = process.env.PORT || 3000;
 // CORS configuration
 const corsOptions = {
   origin: [
-    'http://localhost:5173', // Local frontend (adjust if different, e.g., 3000, 3001)
+    'http://localhost:3000', // Local frontend (adjust if different, e.g., 3000, 3001)
     'https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app', // Deployed frontend
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
