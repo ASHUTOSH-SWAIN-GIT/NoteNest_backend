@@ -12,6 +12,8 @@ const port = process.env.PORT || 3000;
 const corsOptions = {
     origin: ['https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app', 'http://localhost:3000'],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // allow more methods
+    Credential:true,
+    optionSuccessStatus:200,
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
 
