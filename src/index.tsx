@@ -9,16 +9,35 @@ const cors = require('cors');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// CORS configuration
 const corsOptions = {
   origin: [
     'https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app',
-    'http://localhost:5173', // Adjust to your frontend's actual port (e.g., 5173 for Vite)
+    'http://localhost:5173', // Adjust to match your frontend's port
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  credentials: true, // Fixed typo
-  optionsSuccessStatus: 200, // Fixed typo
+  credentials: true,
+  optionsSuccessStatus: 200,
   allowedHeaders: ['Content-Type', 'Authorization'],
 };
+
+// Log incoming requests for debugging
+app.use((req, res, next) => {
+  console.log('Request URL:', req.url);
+  console.log('Request Origin:', req.get('Origin'));
+  next();
+});
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Log CORS headers in responses
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    console.log('Response Headers:', res.getHeaders());
+  });
+  next();
+});
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -27,16 +46,14 @@ cloudinary.config({
   secure: true,
 });
 
-// Setup middlewares
-app.use(cors(corsOptions));
+// Parse JSON bodies
 app.use(express.json());
 
-// Simple route
+// Routes
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// Use routes
 app.use('/api/notes', NotesRouter);
 app.use('/api/image', imageRoute);
 
