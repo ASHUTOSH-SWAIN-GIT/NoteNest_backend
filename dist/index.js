@@ -15,36 +15,23 @@ const port = process.env.PORT || 3000;
 // CORS configuration
 const corsOptions = {
     origin: [
+        'http://localhost:3000',
         'https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app',
-        'http://localhost:5173', // Adjust to match your frontend's port
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
     optionsSuccessStatus: 200,
     allowedHeaders: ['Content-Type', 'Authorization'],
 };
-// Log incoming requests for debugging
-app.use((req, res, next) => {
-    console.log('Request URL:', req.url);
-    console.log('Request Origin:', req.get('Origin'));
-    next();
-});
 // Apply CORS middleware
 app.use(cors(corsOptions));
-// Log CORS headers in responses
-app.use((req, res, next) => {
-    res.on('finish', () => {
-        console.log('Response Headers:', res.getHeaders());
-    });
-    next();
-});
 cloudinary.config({
     cloud_name: process.env.CLOUD_NAME,
     api_key: process.env.CLOUD_API_KEY,
     api_secret: process.env.CLOUD_API_SECRET,
     secure: true,
 });
-// Parse JSON bodies
+// Parse JSON
 app.use(express_1.default.json());
 // Routes
 app.get('/', (req, res) => {
@@ -56,5 +43,5 @@ app.use('/api/image', imageRoute_1.default);
 app.use(errorHandler_1.errorHandler);
 // Start server
 app.listen(port, () => {
-    console.log(`Server running on http://localhost:${port}`);
+    console.log(`Server running on port ${port}`);
 });
