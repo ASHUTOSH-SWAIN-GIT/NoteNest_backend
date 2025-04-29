@@ -7,7 +7,6 @@ const router = Router();
 // Define your routes
 router.get('/', getAllNotes);
 router.post('/upload', UploadNote);
-router.delete(`/:id`,DeleteNote)
+router.delete('/:id',DeleteNote)
 
-// ✅ This is important
 export default router;
