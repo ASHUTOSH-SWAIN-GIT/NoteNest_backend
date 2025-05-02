@@ -9,6 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.uploadPdfBufferToCloudinary = exports.createPdfFromImages = void 0;
+// services/pdfService.ts
 const { PDFDocument } = require('pdf-lib');
 const streamifier = require('streamifier');
 const cloudinary_1 = require("cloudinary");
@@ -25,20 +27,18 @@ const createPdfFromImages = (imageBuffers) => __awaiter(void 0, void 0, void 0, 
         const page = pdfDoc.addPage([image.width, image.height]);
         page.drawImage(image, { x: 0, y: 0 });
     }
-    return yield pdfDoc.save();
+    const pdfBytes = yield pdfDoc.save();
+    return Buffer.from(pdfBytes);
 });
+exports.createPdfFromImages = createPdfFromImages;
 const uploadPdfBufferToCloudinary = (pdfBuffer) => {
     return new Promise((resolve, reject) => {
-        const uploadStream = cloudinary_1.v2.uploader.upload_stream({ resource_type: 'raw' }, // raw required for PDFs
-        (error, result) => {
+        const uploadStream = cloudinary_1.v2.uploader.upload_stream({ resource_type: 'raw', folder: 'pdfs' }, (error, result) => {
             if (error)
                 return reject(error);
             resolve(result);
         });
-        streamifier.createReadStream(Buffer.from(pdfBuffer)).pipe(uploadStream);
+        streamifier.createReadStream(pdfBuffer).pipe(uploadStream);
     });
 };
-module.exports = {
-    createPdfFromImages,
-    uploadPdfBufferToCloudinary,
-};
+exports.uploadPdfBufferToCloudinary = uploadPdfBufferToCloudinary;

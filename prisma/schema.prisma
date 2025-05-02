@@ -50,7 +50,8 @@ model Note {
   purchase purchase[]
   wishlist wishlist[]
   rating   Rating[]
-  download Downloads[] // Link to Downloads table
+  download Downloads[] 
+    images     Image[] 
 }
 
 enum Visibility {
@@ -98,8 +99,11 @@ model Downloads {
 }
 
 model Image {
-  ImageId String  @id
+  ImageId String  @id @default(uuid())
   userId  String?
   user    User?   @relation(fields: [userId], references: [Userid])
   url     String
+  createdAt DateTime @default(now())
+  noteId    String?  
+  note      Note?    @relation(fields: [noteId], references: [Noteid])
 }

@@ -2,7 +2,7 @@ require('dotenv').config();
 import express from "express";
 import { errorHandler } from "./middleware/errorHandler";
 import NotesRouter from './routes/notesRoute';
-// import imageRoute from "./routes/imageRoute";
+ import uploadRoutes from "./routes/uploadRoutes";
 
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
@@ -42,7 +42,7 @@ app.use(express.json());
 
 
 app.use('/api/notes', NotesRouter);
-// app.use('/api/image', imageRoute);
+ app.use('/api/image', uploadRoutes);
 
 // Error handler
 app.use(errorHandler);

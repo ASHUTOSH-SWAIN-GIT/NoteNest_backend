@@ -7,7 +7,7 @@ require('dotenv').config();
 const express_1 = __importDefault(require("express"));
 const errorHandler_1 = require("./middleware/errorHandler");
 const notesRoute_1 = __importDefault(require("./routes/notesRoute"));
-const imageRoute_1 = __importDefault(require("./routes/imageRoute"));
+const uploadRoutes_1 = __importDefault(require("./routes/uploadRoutes"));
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 const app = (0, express_1.default)();
@@ -36,7 +36,7 @@ cloudinary.config({
 // Parse JSON
 app.use(express_1.default.json());
 app.use('/api/notes', notesRoute_1.default);
-app.use('/api/image', imageRoute_1.default);
+app.use('/api/image', uploadRoutes_1.default);
 // Error handler
 app.use(errorHandler_1.errorHandler);
 // Start server
