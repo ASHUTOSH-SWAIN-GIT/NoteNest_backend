@@ -2,7 +2,7 @@ require('dotenv').config();
 import express from "express";
 import { errorHandler } from "./middleware/errorHandler";
 import NotesRouter from './routes/notesRoute';
-import imageRoute from "./routes/imageRoute";
+// import imageRoute from "./routes/imageRoute";
 
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
@@ -13,7 +13,7 @@ const port = process.env.PORT || 3000;
 const corsOptions = {
   origin: [
     'http://localhost:3000',
-    'https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app',
+    
   ],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   credentials: true,
@@ -25,7 +25,7 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Optional: Handle preflight requests explicitly (if needed)
-app.options('*', cors(corsOptions));
+ app.options('*', cors(corsOptions));
 
 // Cloudinary config
 cloudinary.config({
@@ -38,13 +38,11 @@ cloudinary.config({
 // Parse JSON
 app.use(express.json());
 
-// Routes
-app.get('/', (req, res) => {
-  res.send('Hello World!');
-});
+
+
 
 app.use('/api/notes', NotesRouter);
-app.use('/api/image', imageRoute);
+// app.use('/api/image', imageRoute);
 
 // Error handler
 app.use(errorHandler);

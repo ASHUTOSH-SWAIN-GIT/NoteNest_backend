@@ -38,9 +38,9 @@ export const UploadNote = async (req: Request, res: Response) => {
 }
 
 export const DeleteNote = async (req: Request, res: Response) => {
-    const { id } = req.params
+    const { Noteid } = req.params
     try {
-        const deletednote = await noteService.deleteNote(id)
+        const deletednote = await noteService.deleteNote(Noteid)
         if (!deletednote) {
             res.status(404).json({ error: "Note not found" })
         }

@@ -1,21 +1,19 @@
-
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
   // directUrl = env("DIRECT_URL")
 }
-        
 
 model User {
   Userid     String  @id @default(cuid()) // Primary key
   email      String  @unique
   password   String?
   username   String? @unique
-  ProfilePic      String? // profile picture
+  ProfilePic String? // profile picture
   role       Role    @default(USER)
   provider   String?
   providerId String?
@@ -36,7 +34,7 @@ enum Role {
 }
 
 model Note {
-  Noteid          String     @id @default(cuid()) // Primary key
+  Noteid      String     @id @default(cuid()) // Primary key
   title       String
   subject     String
   price       Float
@@ -100,7 +98,7 @@ model Downloads {
 }
 
 model Image {
-  ImageId String @id
+  ImageId String  @id
   userId  String?
   user    User?   @relation(fields: [userId], references: [Userid])
   url     String

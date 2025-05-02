@@ -77,9 +77,9 @@ const UploadNote = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.UploadNote = UploadNote;
 const DeleteNote = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
+    const { Noteid } = req.params;
     try {
-        const deletednote = yield noteService.deleteNote(id);
+        const deletednote = yield noteService.deleteNote(Noteid);
         if (!deletednote) {
             res.status(404).json({ error: "Note not found" });
         }

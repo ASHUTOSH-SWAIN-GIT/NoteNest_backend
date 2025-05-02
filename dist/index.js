@@ -16,7 +16,6 @@ const port = process.env.PORT || 3000;
 const corsOptions = {
     origin: [
         'http://localhost:3000',
-        'https://note-nest-frontend-oenzpjpxc-ashutoshs-projects-45093912.vercel.app',
     ],
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
     credentials: true,
@@ -36,10 +35,6 @@ cloudinary.config({
 });
 // Parse JSON
 app.use(express_1.default.json());
-// Routes
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
 app.use('/api/notes', notesRoute_1.default);
 app.use('/api/image', imageRoute_1.default);
 // Error handler

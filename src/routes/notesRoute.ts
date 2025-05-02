@@ -5,8 +5,8 @@ import { getAllNotes, UploadNote,DeleteNote } from '../controller/NotesControlle
 const router = Router();
 
 // Define your routes
-router.get('/', getAllNotes);
-router.post('/upload', UploadNote);
-router.delete('/:id',DeleteNote)
+router.get('/getnote', getAllNotes);
+ router.post('/upload', UploadNote);
+router.delete('/:Noteid',DeleteNote)
 
 export default router;
